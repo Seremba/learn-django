@@ -1,12 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Room
+from .forms import RoomForm
 # Create your views here.
 
-rooms = [
-    {'id': 1, 'name': 'let us learn python'},
-    {'id': 2, 'name': 'Design With Me'},
-    {'id': 3, 'name': 'Frontend Developers'},
-]
+# rooms = [
+#     {'id': 1, 'name': 'let us learn python'},
+#     {'id': 2, 'name': 'Design With Me'},
+#     {'id': 3, 'name': 'Frontend Developers'},
+# ]
 from django.http import HttpResponse
 
 def home(request):
@@ -20,6 +21,13 @@ def room(request,pk):
     return render(request, 'base/room.html', context)
 
 def createRoom(request):
+    form = RoomForm()
+    if request.method == 'POST':
+        # print(request.POST)
+        form = RoomForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return  redirect('home')
 
-    context = {}
+    context = {'form':form}
     return render(request, 'base/room_form.html', context)
