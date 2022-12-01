@@ -1,2 +1,2 @@
 # learn-django
-Learning Django a python framework! 
+Learning Django a python framework by cloning discord
