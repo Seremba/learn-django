@@ -1,2 +1,2 @@
 # learn-django
-Learning Django 
+Learning Django a python framework! 
